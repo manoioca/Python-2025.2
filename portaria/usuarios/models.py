@@ -34,9 +34,9 @@ class UsuarioManager(BaseUserManager):
         usuario.save()
         return usuario
 
-class usuario(AbstractBaseUser, PermissionsMixin, BaseUserManager):
+class usuario(AbstractBaseUser, PermissionsMixin):
     email = models.EmailField(verbose_name= "E-mail do usuário",
-                              max_lenght = 100,
+                              max_length = 100,
                               unique = True)
     
     is_active = models.BooleanField(verbose_name= "Usuário está ativo",
@@ -52,6 +52,8 @@ class usuario(AbstractBaseUser, PermissionsMixin, BaseUserManager):
     )
 
     USERNAME_FIELD = 'email'
+
+    objects = UsuarioManager()
 
     class Meta:
         verbose_name = "usuário"
